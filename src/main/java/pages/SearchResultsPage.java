@@ -29,6 +29,12 @@ public class SearchResultsPage implements PageActions {
         return price;
     }
 
+    // setter method
+    public void setPrice() {
+        price = getText(symbol) + getText(priceWhole) + "." + getText(priceFraction);
+        System.out.println("price from srp: " + price);
+    }
+
     @Override
     public void click(By locator) {
         driver.findElement(locator).click();
@@ -56,10 +62,6 @@ public class SearchResultsPage implements PageActions {
     }
 
     // custom methods
-    public void storePriceProduct() {
-        price = getText(symbol) + getText(priceWhole) + "." + getText(priceFraction);
-        System.out.println("price from srp: " + price);
-    }
     public void selectFirstResult() {
         clickWhenEnabled(driver, firstResultLink);
         click(firstResultLink);
