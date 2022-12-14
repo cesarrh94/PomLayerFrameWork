@@ -10,7 +10,7 @@ import pages.SignInPage;
 import utils.BaseDriver;
 import utils.JsonFileReader;
 
-public class AddToCartTest {
+public class AmazonTest {
 
     WebDriver driver;
     BaseDriver baseDriver;
