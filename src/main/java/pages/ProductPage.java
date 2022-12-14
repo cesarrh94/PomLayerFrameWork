@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +19,17 @@ public class ProductPage {
         PageFactory.initElements(driver, this);
     }
 
+    // getter method
+    public String getPrice() {
+        return price;
+    }
+
+    // setter method
+    public void setPrice() {
+        price = priceSpan.getText();
+        System.out.println("price from pp: " + priceSpan.getText());
+    }
+
     // WebElements
     @FindBy(id = "submit.add-to-cart")
     private WebElement addToCartbutton;
@@ -27,9 +37,11 @@ public class ProductPage {
     @FindBy(xpath = "//span[@class='a-price a-text-price a-size-medium']")
     private WebElement priceSpan;
 
-    public String getPrice() {
-        return price;
-    }
+    @FindBy(id = "nav-cart")
+    private WebElement cartLink;
+
+    @FindBy(xpath = "//input[@aria-labelledby='attachSiNoCoverage-announce']")
+    private WebElement noGuaranteeCoverageButton;
 
     // custom methods
     public void clickWhenEnabled(WebDriver driver, WebElement element) {
@@ -37,17 +49,19 @@ public class ProductPage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-    public void storePriceProduct() {
-        price = priceSpan.getText();
-        System.out.println("price from pp: " + priceSpan.getText());
-    }
-
     public void addProductToCart() {
         clickWhenEnabled(driver, addToCartbutton);
         addToCartbutton.click();
     }
 
+    public void goToCart() {
+        clickWhenEnabled(driver, cartLink);
+        cartLink.click();
+    }
 
-
+    public void rejectGuaranteePolice() {
+        clickWhenEnabled(driver, noGuaranteeCoverageButton);
+        noGuaranteeCoverageButton.click();
+    }
 
 }
