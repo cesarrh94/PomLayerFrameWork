@@ -4,13 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.JsonFileReader;
 import utils.PageActions;
 
 import java.time.Duration;
+import java.util.Scanner;
 
 public class SignInPage implements PageActions {
 
     private WebDriver driver;
+
+    JsonFileReader reader = new JsonFileReader();
 
     public SignInPage(WebDriver driver) {
         this.driver = driver;
@@ -21,6 +25,9 @@ public class SignInPage implements PageActions {
     By continueButton = By.id("continue");
     By passwordInput = By.id("ap_password");
     By signInButton = By.id("signInSubmit");
+    By authWarningMessage = By.id("auth-warning-message-box");
+    By authCaptcha = By.id("auth-captcha-image");
+    By authInputCaptcha = By.id("auth-captcha-guess");
 
     @Override
     public void click(By locator) {
@@ -49,6 +56,22 @@ public class SignInPage implements PageActions {
     }
 
     // custom methods
+    public void handleSignInAuth() {
+        if (driver.findElement(authWarningMessage).isDisplayed() ||
+            driver.findElement(authCaptcha).isDisplayed()) {
+            type(reader.getAttribute("password"), passwordInput);
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("type characters to sign in: ");
+            String authString = scanner.nextLine();
+            System.out.println("authentication string: " + authString);
+            type(authString, authInputCaptcha);
+            click(signInButton);
+            scanner.close();
+        } else {
+            System.out.println("Auth not required");
+        }
+    }
+
     public void signIn(String email, String password) {
         clickWhenEnabled(driver, emailInput);
         type(email, emailInput);
@@ -56,5 +79,6 @@ public class SignInPage implements PageActions {
         clickWhenEnabled(driver, passwordInput);
         type(password, passwordInput);
         click(signInButton);
+//        handleSignInAuth();
     }
 }
