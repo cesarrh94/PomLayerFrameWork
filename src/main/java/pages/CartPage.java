@@ -24,7 +24,6 @@ public class CartPage {
     @FindBy(xpath = "//span[@id='sc-subtotal-amount-buybox']//span")
     private WebElement priceSpan;
 
-//    @FindBy(xpath = "//span[@class='a-dropdown-prompt']")
     @FindBy(id = "sc-subtotal-label-activecart")
     private WebElement quantitySpan;
 
