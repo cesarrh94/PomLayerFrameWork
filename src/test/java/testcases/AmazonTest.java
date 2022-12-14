@@ -1,10 +1,12 @@
 package testcases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.ProductPage;
 import pages.SearchResultsPage;
 import pages.SignInPage;
 import utils.BaseDriver;
@@ -20,6 +22,7 @@ public class AmazonTest {
     HomePage homePage;
     SignInPage signInPage;
     SearchResultsPage searchResultsPage;
+    ProductPage productPage;
 
     @BeforeMethod
     public void setUp() {
@@ -29,6 +32,7 @@ public class AmazonTest {
         homePage = new HomePage(driver);
         signInPage = new SignInPage(driver);
         searchResultsPage = new SearchResultsPage(driver);
+        productPage = new ProductPage(driver);
     }
 
 
@@ -42,6 +46,9 @@ public class AmazonTest {
         homePage.searchProduct(productName);
         searchResultsPage.storePriceProduct();
         searchResultsPage.selectFirstResult();
+        productPage.storePriceProduct();
+        productPage.addProductToCart();
+        Assert.assertEquals(productPage.getPrice(), searchResultsPage.getPrice());
     }
 
 
