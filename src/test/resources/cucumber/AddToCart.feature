@@ -1,10 +1,8 @@
-Feature: Add to Cart Functionality
+Feature: Add to cart functionality
 
-  As an Amazom user, I want to a product to my cart.
+  As user, I want to add a product to my cart.
 
-  Scenario: Adding a Product to the Cart
-    Given User is on the Product Page
-    And User saves the price of the product
-    And Compares prices to be the same
-    When User add product to cart
-    Then User should be redirected to Cart Page
+  Scenario: Adding a product to the cart
+    Given User is on the product page
+    When User click on add to cart button
+    Then Product should be on the cart

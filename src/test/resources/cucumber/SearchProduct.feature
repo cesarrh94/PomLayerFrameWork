@@ -1,12 +1,11 @@
-Feature: Search Functionality
+Feature: Search functionality
 
-  As an Amazon user, I want to be able of search for
+  As user, I want to be able of search for a
   specific product and select the first result on the list.
 
-  Scenario: Search for a Product
+  Scenario: Search for a product
     Given User search for Samsung Galaxy S9 64GB
-    And Result Page is displayed
-    And User save the price of the product to be selected
-    When User select the first result
-    Then Product Page should be displayed
+    When Search results should be displayed
+    And User must select first result
+    Then User should be redirected to product page
 

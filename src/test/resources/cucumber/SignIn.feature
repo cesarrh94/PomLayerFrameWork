@@ -1,10 +1,9 @@
-Feature: Sign In Functionality
+Feature: Signin functionality
 
-  As an user with valid credentials, I want to be able to
-  sign in on Amazon.
+  As user with valid credentials, I want to be able to sign in.
 
-  Scenario: Sign In with valid credentials
-    Given User is on Sign In Page
-    When User sign in with a valid username and password
-    Then Home page should be displayed
-
+  Scenario: Signin with valid credentials
+    Given User is on signin page
+    When User enters username and password
+    And clicks on signin button
+    Then User should be redirected to home page
