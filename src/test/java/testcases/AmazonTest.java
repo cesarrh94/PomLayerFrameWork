@@ -41,6 +41,7 @@ public class AmazonTest {
         String email = reader.getAttribute("email");
         String password = reader.getAttribute("password");
         signInPage.signIn(email, password);
+        signInPage.clickSignInButton();
         String productName = "Samsung Galaxy S9 64GB";
         homePage.searchProduct(productName);
         searchResultsPage.setPrice();

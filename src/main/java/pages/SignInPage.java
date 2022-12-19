@@ -78,7 +78,11 @@ public class SignInPage implements PageActions {
         click(continueButton);
         clickWhenEnabled(driver, passwordInput);
         type(password, passwordInput);
-        click(signInButton);
+//        click(signInButton);
 //        handleSignInAuth();
+    }
+
+    public void clickSignInButton() {
+        click(signInButton);
     }
 }
